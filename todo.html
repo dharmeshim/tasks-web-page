@@ -2,46 +2,8 @@
 <html>
 <head>
   <title>Todo List</title>
-  <style>
-    /* CSS for Todo List */
-    .todo-container {
-      width: 50%;
-      margin: 0 auto;
-    }
-    .todo-header {
-      text-align: center;
-      font-size: 2em;
-      margin-bottom: 20px;
-    }
-    .todo-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    .todo-item {
-      display: flex;
-      align-items: center;
-      padding: 10px;
-      margin-bottom: 10px;
-      border-bottom: 1px solid #ccc;
-    }
-    .todo-checkbox {
-      margin-right: 10px;
-    }
-    .todo-text {
-      flex-grow: 1;
-    }
-    .todo-delete {
-      margin-left: 10px;
-      cursor: pointer;
-    }
-    .todo-delete:hover {
-      color: red;
-    }
-    .todo-item.completed .todo-text {
-      text-decoration: line-through;
-    }
-  </style>
+  <link rel="stylesheet" type="text/css" href="todo-style.css">
+  <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
 </head>
 <body>
   <div class="todo-container">
@@ -50,47 +12,10 @@
       <input type="text" id="new-task" placeholder="Add a new task">
       <button type="button" id="add-task">Add</button>
     </form>
+    <div class="card">
     <ul id="todo-list" class="todo-list"></ul>
+    </div>
   </div>
-  <script>
-    // JavaScript for Todo List
-    var taskInput = document.getElementById("new-task");
-    var addButton = document.getElementById("add-task");
-    var todoList = document.getElementById("todo-list");
-    addButton.addEventListener("click", addTask);
-
-    function addTask() {
-      var taskText = taskInput.value;
-      if (taskText === "") {
-        return;
-      }
-      var newTask = document.createElement("li");
-      newTask.classList.add("todo-item");
-      newTask.innerHTML = `
-        <input type="checkbox" class="todo-checkbox">
-        <span class="todo-text">${taskText}</span>
-        <span class="todo-delete">x</span>
-      `;
-      todoList.appendChild(newTask);
-      taskInput.value = "";
-      addEventListeners(newTask);
-    }
-
-    function addEventListeners(task) {
-      var checkbox = task.querySelector(".todo-checkbox");
-      var deleteButton = task.querySelector(".todo-delete");
-      checkbox.addEventListener("change", toggleComplete);
-      deleteButton.addEventListener("click", deleteTask);
-    }
-
-    function toggleComplete() {
-      var task = this.parentNode;
-      task.classList.toggle("completed");
-    }
-    function deleteTask() {
-      var task = this.parentNode;
-      task.remove();
-      }
-  </script>
-  </body>
+  <script src="todo-script.js"></script>
+</body>
 </html>
